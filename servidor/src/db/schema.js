@@ -53,6 +53,7 @@ const typeDefs = gql`
     obtenerUsuario(token: String!): Usuario
     # Proyectos
     obtenerProyectos: [Proyecto]
+    obtenerProyecto(id: ID!): Proyecto
   }
   type Mutation {
     # Usuarios

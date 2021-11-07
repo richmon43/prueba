@@ -25,6 +25,14 @@ const resolvers = {
       } catch (error) {
         console.log(error);
       }
+    },
+    obtenerProyecto: async (_, { id }) => {
+      // revisar si el producto existe
+      const proyecto = await Proyecto.findById(id);
+      if(!proyecto) {
+        throw new Error('Proyecto no encontrado');
+      }
+      return proyecto;
     }
   },
   Mutation: {

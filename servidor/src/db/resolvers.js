@@ -17,6 +17,14 @@ const resolvers = {
     obtenerUsuario: async (_, {token}) => {
       const usuarioId = await jwt.verify(token, process.env.SECRETA);
       return usuarioId;
+    },
+    obtenerProyectos: async () => {
+      try {
+        const proyectos = await Proyecto.find({});
+        return proyectos;
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
   Mutation: {

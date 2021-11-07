@@ -12,6 +12,18 @@ const typeDefs = gql`
   type Token {
     token: String
   }
+  type Proyecto {
+    id: ID
+    titulo: String
+    objGenerales: String
+    presupuesto: Int
+    dniLider: String
+    nombreLider: String
+    estado: String
+    fase: String
+    creado: String
+    duracion: Int
+  }
 
   input UsuarioInput {
     nombre: String!
@@ -24,13 +36,27 @@ const typeDefs = gql`
     email: String!
     password: String!
   }
+  input ProyectoInput {
+    titulo: String!
+    objGenerales: String!
+    presupuesto: Int!
+    dniLider: String!
+    nombreLider: String!
+    estado: String
+    fase: String!
+    creado: String!
+    duracion: Int!
+  }
 
   type Query {
-    obtenerCurso: String
+    obtenerUsuario(token: String!): Usuario
   }
   type Mutation {
+    # Usuarios
     nuevoUsuario(input: UsuarioInput): Usuario
     autenticarUsuario(input: AutenticarInput): Token
+    # Proyectos
+    nuevoProyecto(input: ProyectoInput): Proyecto
   }
 `;
 

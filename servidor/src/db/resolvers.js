@@ -97,6 +97,16 @@ const resolvers = {
       });
       return proyecto;
     },
+    eliminarProyecto: async (_, {id}) => {
+      // Revisar si el proyecto existe o no
+      let proyecto = await Proyecto.findById(id);
+      if (!proyecto) {
+        throw new Error("Proyecto no encontrado");
+      }
+      // Eliminarlo de la DB
+      await Proyecto.findByIdAndDelete({_id: id});
+      return 'Proyecto eliminado correctamente';
+    }
   },
 };
 

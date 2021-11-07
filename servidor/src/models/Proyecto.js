@@ -8,6 +8,7 @@ const ProyectosSchema = mongoose.Schema({
   },
   objGenerales: {
     type: String,
+    required: true,
     trim: true
   },
   objEspecificos: {
@@ -22,8 +23,8 @@ const ProyectosSchema = mongoose.Schema({
     type: Date,
     default: Date.now()
   },
-  terminacion: {
-    type: Date
+  duracion: {
+    type: Number
   },
   dniLider: {
     type: String,
@@ -42,6 +43,7 @@ const ProyectosSchema = mongoose.Schema({
   },
   fase: {
     type: String,
+    required: true,
     trim: true
   }
 });

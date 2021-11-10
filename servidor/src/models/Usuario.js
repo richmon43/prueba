@@ -11,11 +11,10 @@ const UsuariosSchema = mongoose.Schema({
     required: true,
     trim: true
   },
-  dni: {
+  estado: {
     type: String,
     required: true,
-    unique: true,
-    trim: true
+    default: "Pendiente"
   },
   email: {
     type: String,

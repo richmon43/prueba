@@ -6,9 +6,9 @@ require("dotenv").config({ path: "variables.env" });
 
 const crearToken = (usuario, secreta, expiresIn) => {
   // console.log(usuario);
-  const { id, nombre, apellido, email } = usuario;
+  const { id, nombre, apellido, email, estado } = usuario;
 
-  return jwt.sign({ id, nombre, apellido, email }, secreta, { expiresIn });
+  return jwt.sign({ id, nombre, apellido, email, estado }, secreta, { expiresIn });
 };
 
 // Resolvers
@@ -74,6 +74,26 @@ const resolvers = {
       return {
         token: crearToken(existeUsuario, process.env.SECRETA, "1h"),
       };
+    },
+    actualizarUsuario: async (_, {id, input}) => {
+      // Revisar si el usuario existe
+      let usuario = await Usuario.findById(id);
+      if (!usuario){
+        throw new Error("Usuario no encontrado");
+      }
+      // guardarlo en la base de datos
+      usuario = await Usuario.findOneAndUpdate({_id: id}, input, {new: true,});
+      return usuario;
+    },
+    eliminarUsuario: async (_, {id}) => {
+      // Revisar si el usuario existe o no
+      let usuario = await Usuario.findById(id);
+      if (!usuario) {
+        throw new Error("Usuario no encontrado");
+      }
+      // Eliminarlo de la DB
+      await Usuario.findByIdAndDelete({_id: id});
+      return 'Usuario eliminado correctamente';
     },
     nuevoProyecto: async (_, { input }) => {
       try {

@@ -7,6 +7,7 @@ const typeDefs = gql`
     nombre: String
     apellido: String
     email: String
+    estado: String
     creado: String
   }
   type Token {
@@ -28,7 +29,7 @@ const typeDefs = gql`
   input UsuarioInput {
     nombre: String!
     apellido: String!
-    dni: String!
+    estado: String
     email: String!
     password: String!
   }
@@ -38,14 +39,14 @@ const typeDefs = gql`
   }
   input ProyectoInput {
     titulo: String!
-    objGenerales: String!
-    presupuesto: Int!
+    objGenerales: String
+    presupuesto: Int
     dniLider: String!
     nombreLider: String!
     estado: String
-    fase: String!
-    creado: String!
-    duracion: Int!
+    fase: String
+    creado: String
+    duracion: Int
   }
 
   type Query {
@@ -59,6 +60,8 @@ const typeDefs = gql`
     # Usuarios
     nuevoUsuario(input: UsuarioInput): Usuario
     autenticarUsuario(input: AutenticarInput): Token
+    actualizarUsuario(id: ID!, input: UsuarioInput): Usuario
+    eliminarUsuario(id: ID!): String
     # Proyectos
     nuevoProyecto(input: ProyectoInput): Proyecto
     actualizarProyecto(id: ID!, input: ProyectoInput): Proyecto

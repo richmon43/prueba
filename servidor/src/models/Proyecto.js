@@ -8,7 +8,6 @@ const ProyectosSchema = mongoose.Schema({
   },
   objGenerales: {
     type: String,
-    required: true,
     trim: true
   },
   objEspecificos: {
@@ -38,12 +37,11 @@ const ProyectosSchema = mongoose.Schema({
   },
   estado: {
     type: Boolean,
-    default: false,
-    required: true
+    default: false
   },
   fase: {
     type: String,
-    required: true,
+    default: null,
     trim: true
   }
 });
